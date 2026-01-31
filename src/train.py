@@ -55,7 +55,6 @@ def main():
     # Load tokenizer and tokenize text
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     
-    print("Tokenizing data...")
     tokenized_dataset = dataset.map(
         lambda batch: tokenize_text(batch, tokenizer),
         batched=True,
@@ -77,7 +76,7 @@ def main():
         output_dir=OUT_DIR,
         
         # Evaluation and saving
-        eval_strategy="steps",
+        evaluation_strategy="steps",
         eval_steps=500,
         save_steps=500,
         logging_steps=100,
@@ -95,7 +94,7 @@ def main():
         warmup_ratio=0.06,
         
         # Performance
-        fp16=False,  # set to False if you don't have GPU or get errors
+        fp16 = False,  # set to False if you don't have GPU or get errors
         report_to="none",
     )
     
@@ -112,7 +111,7 @@ def main():
     )
     
     # Train
-    print("\nStarting training")
+    print("starting training")
     trainer.train()
     
     # Evaluate on validation set
