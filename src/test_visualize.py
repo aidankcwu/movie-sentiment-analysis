@@ -15,15 +15,6 @@ MAX_LENGTH = 256
 BATCH_SIZE = 32
 TOP_K_ERRORS = 10  # how many FP/FN examples to print
 
-
-def get_device():
-    if torch.backends.mps.is_available():
-        return torch.device("mps")
-    if torch.cuda.is_available():
-        return torch.device("cuda")
-    return torch.device("cpu")
-
-
 def load_split(path):
     df = pd.read_csv(path)
     if "text" not in df.columns or "label" not in df.columns:
@@ -222,7 +213,7 @@ def evaluate_split(name, df, tokenizer, model, device):
 
 
 def main():
-    device = get_device()
+    device = "mps"
     print(f"Loading model from: {MODEL_DIR}")
     print(f"Using device: {device}")
 

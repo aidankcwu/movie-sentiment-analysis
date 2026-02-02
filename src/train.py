@@ -21,7 +21,7 @@ MAX_LENGTH = 256
 
 
 def tokenize_text(batch, tokenizer):
-    """Tokenize review text with truncation."""
+    """Tokenize review text with truncation"""
     return tokenizer(batch["text"], truncation=True, max_length=MAX_LENGTH)
 
 
